@@ -1,22 +1,28 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Featured from './components/Featured'
-import SignUp from './components/SignUp'
-import Footer from './components/Footer'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Chat from './components/Chat';
 
+import { auth } from './firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-const App = () => {
+const style = {
+  appContainer: `max-w-[728px] mx-auto text-center`,
+  sectionContainer: `flex flex-col h-[90vh] bg-gray-100 mt-10 shadow-xl border relative`,
+};
+
+function App() {
+  const [user] = useAuthState(auth);
+  //  console.log(user)
   return (
-    <div>
+    <div className={style.appContainer}>
+      <section className='{style.sectionContainer}'>
+        {/* Navbar */}
         <Navbar />
-        <Hero />
-        <Featured />
-        <SignUp />
-        <Footer />
-
+        {user ? <Chat /> : null}
+        {/* <Chat /> */}
+      </section>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

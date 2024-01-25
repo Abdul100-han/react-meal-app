@@ -1,7 +1,10 @@
-/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 
-/* Your custom styles go here */
+@layer base {
+  button {
+    @apply border border-black rounded-xl px-5 py-1
+  }
+}
